@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import { fetchCollection } from '../api.js'
 
-export default function ResourcePage({ resource, title, description }) {
+export default function ResourcePage({ resource, endpoint, title, description }) {
   const [items, setItems] = useState([])
   const [state, setState] = useState('loading')
   const [error, setError] = useState('')
 
   useEffect(() => {
     let active = true
-    fetchCollection(resource)
+    fetchCollection(resource, endpoint)
       .then((data) => {
         if (active) { setItems(data); setState('ready') }
       })
@@ -16,7 +16,7 @@ export default function ResourcePage({ resource, title, description }) {
         if (active) { setError(requestError.message); setState('error') }
       })
     return () => { active = false }
-  }, [resource])
+  }, [resource, endpoint])
 
   const columns = items.length ? Object.keys(items[0]).filter((key) => key !== '__v') : []
 
