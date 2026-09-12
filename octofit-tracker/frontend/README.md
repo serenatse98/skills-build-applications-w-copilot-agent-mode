@@ -1,4 +1,18 @@
-# React + Vite
+# OctoFit Tracker frontend
+
+The presentation tier is a React 19 application served by Vite. It reads the
+API host from `VITE_CODESPACE_NAME` and requests resources from
+`https://${VITE_CODESPACE_NAME}-8000.app.github.dev/api/[component]/`.
+
+Define `VITE_CODESPACE_NAME` in `octofit-tracker/frontend/.env.local` before
+starting Vite, for example:
+
+```bash
+VITE_CODESPACE_NAME=your-codespace-name
+```
+
+When the variable is unset, the app safely falls back to
+`http://localhost:8000/api` for local development.
 
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
